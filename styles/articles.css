@@ -1,0 +1,275 @@
+/* Подключение кастомного шрифта */
+@font-face {
+    font-family: 'CustomFont';
+    src: url('../assets/font/JetBrainsMonoNerdFont-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'JetBrainsMonoNerdFont-Bold', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #cce7f0, #f9e4d4); /* Градиент фона */
+    color: #333;
+    line-height: 1.6;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ccaa7a; /* Цвет фона для шапки */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    gap: 15px;
+}
+
+.logo {
+    margin: 0 auto;
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+    text-decoration: none;
+    flex: 1;
+}
+
+/* Основной контент статьи */
+.article-content {
+    padding: 80px 20px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.article-header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.article-header h1 {
+    font-size: 2.4em;
+    margin-bottom: 10px;
+}
+
+.article-header .article-meta {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.article-body {
+    margin-bottom: 30px;
+}
+
+.article-body h2 {
+    font-size: 1.8em;
+    margin: 20px 0 10px;
+    color: #ccaa7a; /* Цвет для заголовков */
+    text-align: center;
+}
+
+.article-body p {
+    margin-bottom: 15px;
+}
+
+.article-footer {
+    text-align: center;
+    font-size: 0.9em;
+    color: #777;
+}
+
+/* Футер */
+footer {
+    width: 100%;
+    background-color: #2a2a2a;
+    color: #C5D3E8;
+    text-align: center;
+    padding: 5px 0;
+    height: 30px;
+}
+
+footer .footer-container {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+footer p {
+    font-size: 0.8em;
+    margin: 0;
+    line-height: 1.2;
+}
+/* Стиль кнопки меню */
+.menu-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Полоски кнопки меню */
+.menu-button span {
+    display: block;
+    width: 35px;
+    height: 4px;
+    background-color: #C5D3E8; /* Новый цвет полосок */
+    border-radius: 2px; /* Скругленные края полосок */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Эффект при наведении */
+.menu-button:hover span {
+    background-color: #a8bcd9; /* Чуть темнее цвет при наведении */
+}
+
+/* Анимация кнопки "закрыть" */
+.menu-button.open span:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+    background-color: #C5D3E8; /* Цвет при открытом меню */
+}
+
+.menu-button.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-button.open span:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+    background-color: #C5D3E8; /* Цвет при открытом меню */
+}
+
+/* Фон меню */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.menu-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Стиль навигации */
+.menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    margin-bottom: 20px;
+}
+
+.menu a {
+    font-size: 1.5em;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.menu a:hover {
+    color: #ccaa7a;
+}
+/* Основное меню */
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    margin-bottom: 20px;
+    position: relative; /* Для выпадающего меню */
+}
+
+.menu a {
+    font-size: 1.5em;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.menu a:hover {
+    color: #ccaa7a;
+}
+
+/* Выпадающее меню */
+/* Выпадающее меню */
+.dropdown-menu {
+    position: absolute;
+    left: 50%; /* Размещаем подменю относительно центральной точки основного пункта */
+    top: 100%; /* Расположить под основным пунктом */
+    transform: translateX(-50%); /* Смещаем подменю на 50% своей ширины влево, чтобы центр совпал */
+    display: none;
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 20px; /* Увеличенные отступы */
+    list-style: none;
+    z-index: 1000;
+    width: 250px; /* Увеличенная ширина подменю */
+}
+
+/* Элементы подменю */
+.dropdown-menu li {
+    margin: 10px 0; /* Увеличенные отступы между пунктами */
+}
+
+/* Ссылки в подменю */
+.dropdown-menu a {
+    font-size: 1.4em; /* Увеличенный размер шрифта */
+}
+
+/* Открытое подменю */
+.dropdown.open .dropdown-menu {
+    display: block;
+} /* Footer Styles */
+/* Стиль для вставки фотографии с закругленными краями */
+/* Стиль для вставки фотографии с закругленными краями и центровкой */
+.img-wrapper {
+    display: flex;
+    justify-content: center; /* Центровка по горизонтали */
+    align-items: center;     /* Центровка по вертикали */
+    height: 50vh;           /* Занимает всю высоту экрана */
+}
+
+.img-rounded {
+    width: 400px;        /* Устанавливаем ширину изображения */
+    height: 400px;       /* Устанавливаем высоту изображения */
+    object-fit: cover;   /* Обрезаем изображение, чтобы оно заполнило указанные размеры */
+    border-radius: 15px; /* Закругляем края изображения */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень для улучшения визуального восприятия */
+}
+
+
+

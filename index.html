@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Головна - PawPal</title>
+    <link rel="stylesheet" href="styles/index.css">
+     <link rel="icon" type="image/x-icon" href="assets/bcg1.jpg">
+</head>
+<body>
+
+<div class="menu-button" id="menuButton">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<div class="menu-overlay" id="menuOverlay">
+    <nav class="menu">
+        <ul>
+            <li><a href="#">Головна</a></li>
+            <li class="dropdown">
+                <a href="#" id="articlesLink">Статті</a>
+                <ul class="dropdown-menu" id="articlesMenu">
+                    <li><a href="articles/home_dog_breeds.html">Популярні домашні породи собак</a></li>
+                    <li><a href="articles/why_dog.html">Чому саме собака?</a></li>
+                    <li><a href="articles/commands.html">Навчання собаки для комфортного життя</a></li>
+                </ul>
+            </li>
+            <li><a href="gallery.html">Галерея</a></li>
+        </ul>
+    </nav>
+</div>
+
+
+
+
+    <section id="section1">
+    <img src="https://i.pinimg.com/736x/3c/10/36/3c1036dcc6086d2c80cb41b53b83a38f.jpg" alt="Розмита картинка для секції 1">
+    <div class="text-container">
+        <header>
+            <h1>૮₍ ´˶• ᴥ •˶` ₎ა PawPal ૮₍ ´˶• ᴥ •˶` ₎ა</h1>
+            <p>Інфо ресурс про собак. </p>
+
+        </header>
+    </div>
+</section>
+<section id="section2">
+    <div>
+        <h2>Життя з собаками — це любов, дружба та незабутні миті!</h2>
+        <p>Собаки — це не просто тварини. Вони — частина нашої родини, вірні друзі, які завжди готові подарувати нам свою безумовну любов і відданість. На нашому сайті ви знайдете все, що вам потрібно знати про життя з собаками. Ми ділимося корисними порадами щодо догляду, тренування, здоров’я та харчування собак, а також розповідаємо про різні породи та їх особливості.</p>
+        <p>Що ви знайдете на нашому сайті?</p>
+            <ul>
+                <li> - Поради по догляду та вихованню: Як піклуватися про свого чотирилапого друга, щоб він був щасливим та здоровим.</li>
+                <li> - Історії про собак: Зворушливі та смішні історії з життя собак, які не залишать вас байдужими.</li>
+                <li> - Порівняння порід: Дізнайтеся, яка порода собаки підходить саме вам і вашому стилю життя.</li>
+            </ul> 
+        <p>Приєднуйтесь до нашої спільноти!
+Якщо ви любите собак або тільки плануєте стати їхнім власником, наш сайт — це саме те місце, де ви зможете отримати корисну інформацію, поділитися своїми враженнями та дізнатися більше про цих чудових тварин.
+
+Собаки роблять наше життя яскравішим, тому давайте святкувати кожну хвилину разом з ними!</p>
+
+    </div>
+</section>
+
+    <script>
+        let currentSection = 0;
+        const sections = document.querySelectorAll('section');
+        const totalSections = sections.length;
+
+        let isScrolling = false; // Флаг для предотвращения многократных вызовов
+
+        function scrollToSection(index) {
+            if (index < 0 || index >= totalSections) return;
+            isScrolling = true; // Блокируем дальнейшие вызовы
+            sections[index].scrollIntoView({ behavior: 'smooth' });
+            currentSection = index;
+
+            // Снимаем блокировку после окончания скролла
+            setTimeout(() => (isScrolling = false), 800);
+        }
+
+        window.addEventListener('wheel', (event) => {
+            if (isScrolling) return;
+
+            if (event.deltaY > 0) {
+                scrollToSection(currentSection + 1); // Скролл вниз
+            } else {
+                scrollToSection(currentSection - 1); // Скролл вверх
+            }
+        });
+
+        // Обработка свайпа для тачпадов или мобильных устройств
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        window.addEventListener('touchstart', (event) => {
+            touchStartY = event.touches[0].clientY;
+        });
+
+        window.addEventListener('touchend', (event) => {
+            touchEndY = event.changedTouches[0].clientY;
+
+            if (isScrolling) return;
+
+            if (touchStartY - touchEndY > 50) {
+                scrollToSection(currentSection + 1); // Свайп вверх
+            } else if (touchEndY - touchStartY > 50) {
+                scrollToSection(currentSection - 1); // Свайп вниз
+            }
+        });
+    </script>
+    <script>
+    const menuButton = document.getElementById('menuButton');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const articlesLink = document.getElementById('articlesLink');
+    const articlesMenu = document.getElementById('articlesMenu');
+    const dropdown = articlesLink.parentElement;
+
+    // Открытие/закрытие основного меню
+    menuButton.addEventListener('click', () => {
+        menuButton.classList.toggle('open');
+        menuOverlay.classList.toggle('open');
+    });
+
+    // Открытие/закрытие подменю "Статьи"
+    articlesLink.addEventListener('click', (event) => {
+        event.preventDefault(); // Предотвращаем переход по ссылке
+        dropdown.classList.toggle('open'); // Переключаем видимость подменю
+    });
+
+    // Закрытие меню при клике на ссылку
+    const menuLinks = document.querySelectorAll('.menu a:not(#articlesLink)');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            menuButton.classList.remove('open');
+            menuOverlay.classList.remove('open');
+            dropdown.classList.remove('open');
+        });
+    });
+</script>
+
+</body>
+</html>
